@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+
+<div class = "container">
+    <header class = "jumbotron">
+        <div class = "container">
+            <h1>Bem-vindo ao AcampeBem!</h1>
+            <p>Veja os melhores acampamentos de todo o Brasil!</p>
+            <a class = "btn btn-primary btn-large" href = "acampamentos/novo">Adicionar Acampamento</a>
+        </div>
+    </header>
+    
+    <div class = "row text-center" style = "display: flex; flex-wrap: wrap;">
+        <% acampamentos.forEach(function(acampamento)
+        { %>
+            <div class = "col-md-3 col-sm-6">
+                <div class = "thumbnail">
+                    <img src = "<%= acampamento.imagem %>">
+                    <div class = "caption">
+                        <h4><%= acampamento.nome %></h4>
+                    </div>
+                    
+                    <p>
+                        <a href = "acampamentos/<%= acampamento._id %>" class = "btn btn-primary">Info</a>
+                    </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,21 @@
+<% include ../partials/header %>
+
+<div class = "container">
+    <div class = "row">
+        <h1 style = "text-align: center;">Adicionar Comentário a <%= acampamento.nome %></h1>
+        <div style = "width: 30%; margin: 25px auto;">
+            <form action = "/acampamentos/<%= acampamento._id %>/comentarios" method = "post">
+                <div class = "form-group">
+                    <input class = "form-control" type = "text" placeholder = "texto" name = "comentario[texto]">
+                </div>
+                
+                <div class = "form-group">
+                    <button class = "btn btn-lg btn-primary btn-block">Enviar</button>
+                </div>
+            </form>
+            <a href = "/acampamentos">Voltar</a>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,66 @@
+<% include ../partials/header %>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-3">
+            <p class = "lead">AcampeBem</p>
+            
+            <div class = "list-group">
+                <li class = "list-group-item active">Info 1</li>
+                <li class = "list-group-item">Info 2</li>
+                <li class = "list-group-item">Info 3</li>
+            </div>
+        </div>
+        
+        <div class = "col-md-9">
+            <div class = "thumbnail">
+                <img class = "img-responsive" src = "<%= acampamento.imagem %>"></img>
+                
+                <div class = "caption-full">
+                    <h4 class = "pull-right">R$ <%= acampamento.preco %>/noite</h4>
+                    <h1><a><%= acampamento.nome %></a></h1>
+                    <p><%= acampamento.descricao %></p>
+                    <p>
+                        <em>Enviado por: <%= acampamento.autor.nomeDeUsuario %></em>
+                    </p>
+                    
+                    <% if (usuarioAtual && usuarioAtual._id.equals(acampamento.autor.id)) { %>
+                    <a class = "btn btn-xs btn-warning" href = "/acampamentos/<%= acampamento._id %>/editar">Editar</a>
+                    <form class = "delete-form" action = "/acampamentos/<%= acampamento._id %>?_method=delete" method = "post">
+                        <button class = "btn btn-xs btn-danger">Deletar</button>
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+            
+            <div class = "well">
+                <div class = "text-right">
+                    <a class = "btn btn-success" href = "/acampamentos/<%= acampamento._id %>/comentarios/novo">
+                        Comentar
+                    </a>
+                </div>
+                
+                <hr>
+                
+                <% acampamento.comentarios.forEach(function(comentario)
+                { %>
+                    <div class = "row">
+                        <p>
+                            <span class = "pull-right">há 10 dias</span>
+                            <strong><%= comentario.autor.nomeDeUsuario %></strong>
+                            <p><%= comentario.texto %></p>
+                            <% if (usuarioAtual && usuarioAtual._id.equals(comentario.autor.id)) { %>
+                            <a class = "btn btn-xs btn-warning" href = "/acampamentos/<%= acampamento._id %>/comentarios/<%= comentario._id %>/editar">Editar</a>
+                            <form class = "delete-form" action = "/acampamentos/<%= acampamento._id %>/comentarios/<%= comentario._id %>?_method=delete" method = "post">
+                                <button class = "btn btn-xs btn-danger">Deletar</button>
+                            </form>
+                            <% } %>
+                        </p>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AcampeBem</title>
+        <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel = "stylesheet" href = "/stylesheets/principal.css">
+    </head>
+    
+    <body>
+        <nav class = "navbar navbar-default">
+        <div class = "container-fluid">
+            <div class = "navbar-header">
+                <a class = "navbar-brand" href = "/">AcampeBem</a>
+            </div>
+            <div class = "collapse navbar-collapse">
+                <ul class = "nav navbar-nav navbar-right">
+                    <% if (! usuarioAtual) { %>
+                        <li><a href = "/registrar">REGISTRAR-SE</a></li>
+                        <li><a href = "/logar">ENTRAR</a></li>
+                    <% } else { %>
+                        <li><a>Logado como: <%= usuarioAtual.nomeDeUsuario %></a></li> 
+                        <li><a href = "/deslogar">SAIR</a></li>
+                    <% } %>
+                </ul>
+            </div>  
+        </div>
+    </nav>
+    
+    <div class = "container">
+    
+        <% if (erro && erro.length > 0) { %>
+            <div class = "alert alert-danger" role = "alert">
+                <%= erro %>
+            </div>
+        <% } %>
+        
+        <% if (sucesso && sucesso.length > 0) { %>
+            <div class = "alert alert-success" role = "alert">
+                <%= sucesso %>
+            </div>
+        <% } %>
+    </div>
